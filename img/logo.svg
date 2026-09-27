@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Círculo preto interno com rebordo dourado -->
+  <circle cx="256" cy="256" r="240" fill="#0a0a0a" stroke="#c9a24d" stroke-width="16"/>
+  <circle cx="256" cy="256" r="226" fill="none" stroke="#e9cd86" stroke-width="4"/>
+  
+  <!-- Texto metálico dourado/branco -->
+  <text x="256" y="185" text-anchor="middle" fill="#e9cd86" font-family="Georgia, serif" font-size="60" font-weight="bold" letter-spacing="4">EU</text>
+  <text x="256" y="270" text-anchor="middle" fill="#ffffff" font-family="'Arial Black', sans-serif" font-size="72" font-weight="900" letter-spacing="2">BARBEIRO</text>
+  <text x="256" y="355" text-anchor="middle" fill="#e9cd86" font-family="Georgia, serif" font-size="65" font-weight="bold" letter-spacing="4">LUK</text>
+
+  <!-- Tesoura sutil na parte inferior -->
+  <g stroke="#c9a24d" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M210 400 L302 430 M210 430 L302 400" />
+    <circle cx="195" cy="395" r="14" />
+    <circle cx="195" cy="435" r="14" />
+  </g>
+</svg>
