@@ -1,0 +1,825 @@
+:root{
+  --bg:#0a0a0a;
+  --bg-alt:#131211;
+  --card:#181614;
+  --line: rgba(201,162,77,.18);
+  --gold:#c9a24d;
+  --gold-light:#e9cd86;
+  --ivory:#f2ede1;
+  --muted:#a39c8c;
+  --radius: 2px;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: light){ :root{ /* brand stays dark regardless of system theme */ } }
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:76px;}
+body{
+  background:var(--bg);
+  color:var(--ivory);
+  font-family:'Manrope',sans-serif;
+  overflow-x:hidden;
+}
+/*
+/* ============================================================
+   PRELOADER COM BARBER POLE ANIMADO
+   ============================================================ 
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-main, #0c0d10);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+/* Classe aplicada via JS quando o site termina de carregar 
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Estreito container do Barber Pole 
+.barber-pole-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  filter: drop-shadow(0 0 15px rgba(223, 177, 91, 0.25));
+}
+
+/* Tampas Douradas/Metálicas (Topo e Base) 
+.pole-cap {
+  width: 52px;
+  height: 18px;
+  background: linear-gradient(135deg, #dfb15b 0%, #f7e1a0 50%, #8c631b 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 3;
+}
+
+.pole-cap.top {
+  border-radius: 12px 12px 3px 3px;
+}
+
+.pole-cap.bottom {
+  border-radius: 3px 3px 12px 12px;
+}
+
+/* Tubo de Vidro 
+.pole-glass {
+  width: 40px;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid rgba(223, 177, 91, 0.6);
+  border-right: 2px solid rgba(223, 177, 91, 0.6);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+/* Reflexo de Vidro 
+.pole-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Listras Espirais do Barber Pole 
+.pole-stripes {
+  width: 100%;
+  height: 200%; /* Altura duplicada para permitir loop contínuo 
+  background: repeating-linear-gradient(
+    -45deg,
+    #d32f2f,
+    #d32f2f 15px,
+    #ffffff 15px,
+    #ffffff 30px,
+    #1976d2 30px,
+    #1976d2 45px,
+    #ffffff 45px,
+    #ffffff 60px
+  );
+  animation: barberPoleRotate 1.2s linear infinite;
+}
+
+/* Dica: Caso queira as listras em Dourado/Preto/Branco em vez de Vermelho/Branco/Azul, 
+   basta trocar as cores no repeating-linear-gradient acima. */
+
+/* Animação do efeito giratório 
+@keyframes barberPoleRotate {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-60px);
+  }
+}
+
+
+/* Texto de Carregando 
+.preloader-text {
+  margin-top: 1.8rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold, #dfb15b);
+  animation: pulsePreloaderText 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes pulsePreloaderText {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+*/
+
+h1,h2,h3,.display{font-family:'Fraunces',serif; letter-spacing:.01em;}
+a{text-decoration:none;}
+.container-narrow{max-width:1100px; margin:0 auto; padding:0 1.5rem;}
+
+/* ---------- gold rule / divider (echoes the logo) ---------- */
+.rule{
+  display:flex; align-items:center; justify-content:center; gap:1rem;
+  color:var(--gold); margin:2rem 0;
+}
+.rule::before,.rule::after{content:"";flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); max-width:140px;}
+.rule svg{width:26px;height:26px;flex:none;}
+
+/* ---------- nav ---------- */
+/* ---------- nav ---------- */
+.navbar{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  padding: calc(env(safe-area-inset-top,0px) + .9rem) 0 .9rem;
+  background:rgba(10,10,10,0);
+  border-bottom:1px solid transparent;
+  transition:background .35s ease, border-color .35s ease, padding .35s ease;
+}
+.navbar.scrolled{ background:rgba(10,10,10,.92); backdrop-filter:blur(8px); border-color:var(--line); padding-top: calc(env(safe-area-inset-top,0px) + .5rem); padding-bottom:.5rem;}
+.navbar .brand{font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; color:var(--ivory); display:flex; align-items:center; gap:.5rem;}
+.navbar .brand strong{color:var(--gold);}
+.nav-links a{color:var(--muted); font-size:.92rem; font-weight:500; margin-left:1.7rem; position:relative; transition:color .2s;}
+.nav-links a:hover, .nav-links a.active{color:var(--gold-light);}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--gold);}
+
+/* ---------- botão dourado (agendar horário) ---------- */
+.btn-gold,
+.nav-links a.btn-gold,
+#navLinksMobile a.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold)) !important;
+  color: #0a0a0a !important; /* Garante texto escuro de alto contraste */
+  font-weight: 800 !important;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.4rem;
+  border: none;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(201, 162, 77, 0.25);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.2s ease;
+}
+
+/* Efeito de brilho (shimmer) ao passar o cursor */
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 30%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: rotate(25deg);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.btn-gold:hover::after {
+  transform: translate(400%, 0) rotate(25deg);
+}
+
+.btn-gold:hover,
+.nav-links a.btn-gold:hover,
+#navLinksMobile a.btn-gold:hover {
+  background: linear-gradient(180deg, #f2da9d, #dcb15b) !important;
+  color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -8px rgba(201, 162, 77, 0.6);
+}
+
+.btn-gold:active,
+.nav-links a.btn-gold:active,
+#navLinksMobile a.btn-gold:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px -4px rgba(201, 162, 77, 0.4);
+}
+
+/* Remove a linha de item ativo do menu sobre o botão */
+.nav-links a.btn-gold.active::after {
+  display: none !important;
+}
+
+.btn-outline-gold{border:1px solid var(--gold); color:var(--gold-light); padding:.6rem 1.4rem; border-radius:var(--radius); transition:background .2s, color .2s;}
+.btn-outline-gold:hover{background:var(--gold); color:#191307;}
+.navbar-toggler{border:1px solid var(--line);}
+.navbar-toggler .bar{display:block; width:22px; height:2px; background:var(--gold); margin:4px 0;}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh; display:flex; align-items:center; justify-content:center; position:relative;
+  text-align:center; padding: 8rem 1.5rem 4rem;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 18%, rgba(201,162,77,.10), transparent 60%),
+    var(--bg);
+}
+.hero::before{ /* subtle vignette frame like the logo card */
+  content:""; position:absolute; inset:18px; border:1px solid var(--line); pointer-events:none;
+}
+.hero .eyebrow{color:var(--gold); font-size:.95rem; letter-spacing:.04em; opacity:0; animation:rise .8s .1s ease forwards;}
+.hero h1{
+  font-size:clamp(2.6rem, 7vw, 5rem); font-weight:600; line-height:1.05; margin:.6rem 0 1rem;
+  background:linear-gradient(180deg,#fff, var(--gold-light) 60%, var(--gold));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  opacity:0; animation:rise .9s .25s ease forwards;
+}
+.hero p.lead-text{color:var(--muted); font-size:1.15rem; max-width:520px; margin:0 auto 2rem; opacity:0; animation:rise .9s .4s ease forwards;}
+.hero .hero-actions{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; opacity:0; animation:rise .9s .55s ease forwards;}
+@keyframes rise{from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){ .hero *{animation:none !important; opacity:1 !important;} }
+
+/* ---------- section shell ---------- */
+section{padding:6rem 0;}
+.section-head{max-width:640px; margin:0 auto 3.5rem; text-align:center;}
+.section-head .kicker{color:var(--gold); font-size:.85rem; font-weight:600;}
+.section-head h2{font-size:clamp(1.9rem,4vw,2.6rem); margin:.4rem 0 .8rem;}
+.section-head p{color:var(--muted);}
+.bg-alt{background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+
+/* ---------- sobre ---------- */
+.about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:3rem; align-items:center;}
+.about-badge{
+  border:1px solid var(--line); padding:2rem; text-align:center; position:relative;
+}
+.about-badge .num{font-family:'Fraunces',serif; font-size:2.3rem; color:var(--gold-light);}
+.about-badge .lbl{color:var(--muted); font-size:.85rem;}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+
+/* ---------- barbeiros ---------- */
+.barber-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 1.8rem 1rem; /* Ajustado para caber confortavelmente em 4 colunas */
+  text-align: center;
+  height: 100%;
+  transition: border-color .25s, transform .25s;
+}
+.barber-card:hover{border-color:var(--gold); transform:translateY(-4px);}
+.barber-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  margin: 0 auto 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  color: #191307;
+  background: linear-gradient(160deg, var(--gold-light), var(--gold));
+  overflow: hidden; /* Mantém a imagem dentro do círculo */
+}
+.barber-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta e centraliza a foto sem distorcer */
+}
+.barber-card h3{font-size:1.25rem; margin-bottom:.2rem;}
+.barber-tag{display:inline-block; font-size:.75rem; letter-spacing:.03em; color:var(--gold-light); border:1px solid var(--gold); padding:.2rem .7rem; border-radius:20px; margin-bottom:.8rem;}
+.barber-card .role{color:var(--muted); font-size:.9rem;}
+
+/* ---------- cortes ---------- */
+.filter-bar{display:flex; justify-content:center; gap:.6rem; flex-wrap:wrap; margin-bottom:2.6rem;}
+.filter-btn{
+  background:transparent; border:1px solid var(--line); color:var(--muted); padding:.5rem 1.2rem; border-radius:20px;
+  font-size:.88rem; font-weight:600; transition:.2s;
+}
+.filter-btn:hover{border-color:var(--gold);}
+.filter-btn.active{background:var(--gold); border-color:var(--gold); color:#191307;}
+.service-card{
+  background:var(--card); border:1px solid var(--line); overflow:hidden; height:100%; display:flex; flex-direction:column;
+  transition:transform .25s, border-color .25s;
+}
+.service-card:hover{transform:translateY(-4px); border-color:var(--gold);}
+.service-img{
+  height:170px; background:linear-gradient(160deg,#221c11,#0a0a0a); display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-size:2rem; border-bottom:1px solid var(--line);
+}
+.service-body{padding:1.3rem 1.4rem; display:flex; flex-direction:column; gap:.4rem; flex:1;}
+.service-body .top{display:flex; justify-content:space-between; align-items:baseline; gap:.6rem;}
+.service-body h4{font-size:1.05rem; margin:0; font-family:'Manrope',sans-serif; font-weight:700;}
+.service-price{color:var(--gold-light); font-weight:700; white-space:nowrap;}
+.service-body p{color:var(--muted); font-size:.9rem; margin:0;}
+.service-cat{font-size:.72rem; color:var(--muted);}
+
+/* ---------- localizacao ---------- */
+.map-wrap{border:1px solid var(--line); overflow:hidden;}
+.map-wrap iframe{display:block; width:100%; height:340px; border:0; filter:grayscale(.4) contrast(1.05) invert(.92) brightness(.95);}
+.info-row{display:flex; gap:1rem; align-items:flex-start; padding:1.1rem 0; border-bottom:1px solid var(--line);}
+.info-row:last-child{border-bottom:none;}
+.info-row .ic{color:var(--gold); flex:none; margin-top:.15rem;}
+.info-row h5{margin:0 0 .2rem; font-size:1rem;}
+.info-row p{margin:0; color:var(--muted); font-size:.92rem;}
+
+/* ---------- agendar cta ---------- */
+.cta-block{
+  text-align:center; padding:4.5rem 2rem; border:1px solid var(--line); position:relative;
+  background:radial-gradient(ellipse 70% 100% at 50% 0%, rgba(201,162,77,.09), transparent 70%);
+}
+.cta-block h2{font-size:clamp(1.8rem,4vw,2.4rem); margin-bottom:1rem;}
+.cta-block p{color:var(--muted); max-width:480px; margin:0 auto 2rem;}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line); padding:3rem 0 2rem;}
+footer .cols{display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem;}
+footer h6{color:var(--ivory); font-size:.95rem; margin-bottom:.8rem;}
+footer a.footlink{color:var(--muted); display:block; margin-bottom:.5rem; font-size:.9rem;}
+footer a.footlink:hover{color:var(--gold-light);}
+.social-ic{display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid var(--line); color:var(--gold); margin-right:.6rem; transition:.2s;}
+.social-ic:hover{border-color:var(--gold); background:rgba(201,162,77,.1);}
+.copyright{color:var(--muted); font-size:.8rem; margin-top:2.5rem; text-align:center;}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible{outline:2px solid var(--gold-light); outline-offset:3px;}
+
+/* wide content never scrolls the body sideways */
+.overflow-x-auto{overflow-x:auto;}
+
+/* ============================================================
+   AJUSTES E RESPONSIVIDADE DO MENU MOBILE (HAMBÚRGUER)
+   ============================================================ */
+
+/* Ajuste da marca em telas pequenas para não encostar no botão */
+@media (max-width: 576px) {
+  .navbar .brand {
+    font-size: 0.95rem;
+  }
+}
+
+/* Container do menu mobile quando aberto */
+#navLinksMobile {
+  background: rgba(18, 17, 16, 0.97); /* Fundo escuro sólido/saturado */
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+  margin-top: 0.5rem;
+  animation: mobileMenuFade 0.25s ease-out forwards;
+}
+
+/* Estilização dos links do menu mobile */
+#navLinksMobile a:not(.btn-gold) {
+  color: var(--ivory) !important;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.4rem 0;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+/* Efeito ao passar o dedo / clicar nos links */
+#navLinksMobile a:not(.btn-gold):hover,
+#navLinksMobile a:not(.btn-gold):active {
+  color: var(--gold-light) !important;
+  transform: translateX(4px);
+}
+
+/* Ajuste do botão de agendamento no menu mobile */
+#navLinksMobile .btn-gold {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+/* Animação suave ao abrir */
+@keyframes mobileMenuFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ============================================================
+   ÍCONES SOCIAIS NA NAV
+   ============================================================ */
+.nav-social-ic {
+  color: var(--muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+}
+.nav-social-ic:hover {
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+/* Evita que a linha de "item ativo" do menu apareça debaixo dos ícones */
+.nav-links a.nav-social-ic::after {
+  display: none !important;
+}
+
+/* ============================================================
+   LINHA DO TEMPO (HISTÓRIA)
+   ============================================================ */
+.timeline-container {
+  padding-top: 3rem;
+  margin-top: 5rem;
+  border-top: 1px solid var(--line);
+}
+.timeline {
+  position: relative;
+  border-left: 2px solid var(--gold);
+  padding-left: 2rem;
+  margin-left: 1rem;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 4.5rem;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+/* Bolinha dourada na linha vertical */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.45rem; /* Ajustado de acordo com o padding-left */
+  top: 0.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px var(--bg);
+}
+.timeline-date {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+.media-placeholder {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+/* Mantém as proporções unificadas para as imagens em landscape ou retangular */
+.media-placeholder img {
+  width: 100%;
+  height: auto; /* Remove a altura fixa de 220px */
+  max-height: 450px; /* Limite flexível para não ficar gigante em telas grandes */
+  object-fit: cover;
+  object-position: top center; /* Centraliza no topo (ajuda muito em fotos de pessoas) */
+  display: block;
+  border-radius: var(--radius);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 576px) {
+  .media-placeholder img {
+    max-height: 350px; /* Altura maior para o mobile também */
+  }
+}
+
+.media-placeholder:hover img {
+  transform: scale(1.03);
+}
+@media (max-width: 576px) {
+  .timeline {
+    padding-left: 1.2rem;
+    margin-left: 0.5rem;
+  }
+  .timeline-item::before {
+    left: -1.65rem;
+  }
+  .media-placeholder img {
+    height: 160px;
+  }
+}
+
+@keyframes social-bounce {
+  0%   { transform: scale(1) translateY(0); }
+  30%  { transform: scale(1.2) translateY(-4px) rotate(-8deg); color: var(--gold); }
+  60%  { transform: scale(1.2) translateY(-4px) rotate(8deg); color: var(--gold); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.js-social-effect {
+  animation: social-bounce 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Aumento e ajuste do container do vídeo da reinauguração */
+.video-container {
+  width: 100%;
+  height: auto;
+  max-height: 750px; /* Aumentado de 350px/500px para 750px */
+  background: #0a0a0a;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  max-height: 750px;
+  object-fit: cover; /* Use 'contain' se quiser ver as bordas inteiras do vídeo sem cortar nenhum detalhe */
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .video-container,
+  .video-container video {
+    max-height: 550px; /* Ajuste proporcional em telas de celular */
+  }
+}
+
+
+/* ============================================================
+   ESTILOS DA MODAL DE BARBEIROS (PORTFÓLIO & PERFIL)
+   ============================================================ */
+.barber-modal-content {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ivory);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+.barber-modal-badge {
+  display: inline-block;
+  background: rgba(201, 162, 77, 0.12);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.barber-media-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  height: 100%;
+}
+
+.barber-media-card h6 {
+  color: var(--gold-light);
+  font-size: 0.92rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.barber-media-card img,
+.barber-media-card video {
+  width: 100%;
+  height: 280px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  background: #0a0a0a;
+  border: 1px solid var(--line);
+}
+
+.btn-barber-details {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+/* ============================================================
+   FINALIZAÇÃO — BARBEIROS & CORTES
+   ============================================================ */
+.btn-outline-gold{background:transparent; font:inherit; font-weight:600; cursor:pointer;}
+.barber-card{border-radius:var(--radius);}
+.barber-card .barber-avatar img{transition:transform .4s ease;}
+.barber-card:hover .barber-avatar img{transform:scale(1.08);}
+.barber-avatar--lg{width:80px; height:80px; margin:0; font-size:1.4rem;}
+
+/* filtro */
+.filter-btn{cursor:pointer; font-family:inherit;}
+.filter-count{display:inline-block; min-width:1.35em; margin-left:.3rem; padding:0 .35em; border-radius:10px; font-size:.72rem; background:rgba(201,162,77,.16); color:var(--gold-light);}
+.filter-btn.active .filter-count{background:rgba(25,19,7,.18); color:#191307;}
+
+/* cards de corte */
+.service-img svg{width:46px; height:46px; transition:transform .35s ease;}
+.service-card:hover .service-img svg{transform:scale(1.12) rotate(-4deg);}
+.service-foot{display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin-top:auto; padding-top:1rem; border-top:1px solid var(--line);}
+.service-team{display:flex;}
+.team-chip{width:26px; height:26px; margin-right:-6px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font:600 .72rem 'Fraunces',serif; color:#191307; background:linear-gradient(160deg,var(--gold-light),var(--gold)); border:2px solid var(--card);}
+.service-cta{color:var(--gold-light); font-size:.85rem; font-weight:700; transition:letter-spacing .2s, color .2s;}
+.service-cta:hover{color:var(--ivory); letter-spacing:.03em;}
+
+/* modal */
+.barber-modal-head{border-bottom:1px solid var(--line);}
+.barber-modal-head h3{color:var(--ivory); font-size:1.5rem;}
+.barber-modal-role{color:var(--gold-light); font-weight:600; font-size:.9rem; margin-bottom:.5rem;}
+.barber-modal-desc{color:var(--muted); font-size:.9rem; line-height:1.55;}
+.barber-media-card figcaption,.media-caption{margin-top:.6rem; color:var(--muted); font-size:.8rem;}
+.media-fallback{height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem; color:var(--muted); font-size:.85rem; background:#0a0a0a; border:1px dashed var(--line); border-radius:var(--radius);}
+.media-fallback svg{width:34px; height:34px; color:var(--gold);}
+.barber-modal-nav{display:flex; align-items:center; justify-content:space-between; gap:.8rem; flex-wrap:wrap; margin-top:1.6rem; padding-top:1.2rem; border-top:1px solid var(--line);}
+.barber-nav-btn{background:transparent; border:1px solid var(--line); color:var(--muted); padding:.5rem 1rem; border-radius:20px; font:600 .85rem inherit; font-family:inherit; cursor:pointer; transition:.2s;}
+.barber-nav-btn:hover{border-color:var(--gold); color:var(--gold-light);}
+@media (max-width:576px){
+  .barber-media-card img,.barber-media-card video,.media-fallback{height:220px;}
+  .barber-modal-nav{justify-content:center;}
+  .barber-modal-nav .btn-gold{order:-1; width:100%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .barber-card,.service-card,.service-img svg,.barber-card .barber-avatar img{transition:none !important;}
+}
+
+
+/* ============================================================
+   ESTILOS DO FAQ (ACCORDION)
+   ============================================================ */
+.custom-faq .accordion-item {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  margin-bottom: 0.8rem;
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.2s ease;
+}
+
+.custom-faq .accordion-item:hover {
+  border-color: var(--gold);
+}
+
+.custom-faq .accordion-button {
+  background-color: var(--card);
+  color: var(--ivory);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1.1rem 1.4rem;
+  box-shadow: none !important;
+}
+
+.custom-faq .accordion-button:not(.collapsed) {
+  background-color: var(--bg-alt);
+  color: var(--gold-light);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Deixa o ícone de seta do accordion na cor dourada */
+.custom-faq .accordion-button::after {
+  filter: invert(72%) sepia(51%) saturate(450%) hue-rotate(5deg) brightness(95%) contrast(88%);
+}
+
+.custom-faq .accordion-body {
+  background-color: var(--card);
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.6;
+  padding: 1.2rem 1.4rem;
+}
+
+.custom-faq .accordion-body a {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+.custom-faq .accordion-body a:hover {
+  color: var(--ivory);
+}
+
+/* Expande a largura máxima do container na seção de barbeiros */
+#barbeiros .container-narrow {
+  max-width: 1320px;
+}
+
+/* Aumenta o espaçamento interno do cartão e das fotos */
+.barber-card {
+  padding: 2.4rem 1.4rem;
+}
+
+.barber-avatar {
+  width: 102px; /* Aumentado para destacar a foto/inicial */
+  height: 102px;
+  font-size: 1.8rem;
+}
+
+.barber-card h3 {
+  font-size: 1.35rem;
+}
+
+/* Ajusta o botão para o texto não quebrar linha de forma estranha */
+.btn-barber-details {
+  font-size: 0.82rem;
+  padding: 0.65rem 0.8rem;
+  white-space: nowrap;
+}
+
+
+/* Área de mídia do card de corte */
+.service-img {
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-img-video {
+  cursor: pointer;
+}
+
+/* Botão de Play centralizado sobre o card */
+.btn-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 10, 10, 0.85);
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  padding: 0.65rem 1.3rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  z-index: 2;
+  pointer-events: none; /* Mantém o evento de clique na div pai */
+}
+
+/* Efeito ao passar o mouse por cima do card */
+.service-img-video:hover .btn-play-overlay {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: var(--gold);
+  color: #191307;
+}
+
+.service-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.service-card:hover .service-img video {
+  transform: scale(1.05);
+}
